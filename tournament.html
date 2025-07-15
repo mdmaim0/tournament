@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panthoms E-Sports Tournament Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a2e;
+      color: #e0e0e0;
+    }
+
+    .neon-text {
+      text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff, 0 0 20px #00e5ff, 0 0 40px #00e5ff;
+    }
+
+    .container-glow {
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.4), 0 0 30px rgba(0, 229, 255, 0.3);
+      border: 1px solid rgba(0, 229, 255, 0.5);
+    }
+
+    .btn-3d {
+      position: relative;
+      border: none;
+      color: white;
+      padding: 12px 28px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    }
+
+    .btn-3d:before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      transition: all 0.2s ease-in-out;
+      z-index: -1;
+    }
+
+    .btn-3d:active {
+      top: 2px;
+    }
+    
+    .btn-3d.green { background: #28a745; }
+    .btn-3d.green:before { background: #1f7a35; }
+    .btn-3d.red { background: #dc3545; }
+    .btn-3d.red:before { background: #a71d2a; }
+    .btn-3d.yellow { background: #ffc107; color: #1a1a2e; }
+    .btn-3d.yellow:before { background: #d39e00; }
+    .btn-3d.blue { background: #007bff; }
+    .btn-3d.blue:before { background: #0056b3; }
+    
+    .btn-3d:active:before {
+        top: 2px;
+    }
+
+    /* === 3D নিয়ন ইনপুট বক্সের স্টাইল === */
+    input[type="text"]:not([disabled]), input[type="tel"] {
+        background-color: transparent;
+        border: 2px solid #00e5ff;
+        color: #e0e0e0;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        box-shadow: 0 0 8px rgba(0, 229, 255, 0.6), 
+                    inset 0 0 8px rgba(0, 229, 255, 0.4);
+        text-shadow: 0 0 4px rgba(224, 224, 224, 0.5);
+    }
+
+    input[type="text"]:not([disabled]):focus, input[type="tel"]:focus {
+        outline: none;
+        box-shadow: 0 0 15px #00e5ff, 
+                    0 0 25px rgba(0, 229, 255, 0.8),
+                    inset 0 0 10px rgba(0, 229, 255, 0.6);
+        transform: scale(1.02);
+    }
+    
+    input::placeholder {
+        color: #bbdefb; /* হালকা নীল placeholder */
+        opacity: 0.7;
+    }
+
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+  <!-- Header -->
+  <header class="container mx-auto py-12 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold neon-text mt-4">Panthoms E-Sports - Free Fire Tournament</h1>
+    <p class="text-lg mt-4">Registration শেষ হওয়ার সময়: <span id="countdown" class="font-bold text-2xl neon-text"></span></p>
+  </header>
+
+  <!-- Form Section -->
+  <section class="container mx-auto mt-8 p-8 bg-gray-800 rounded-lg container-glow">
+    <h2 class="text-2xl font-semibold mb-6 text-center neon-text">Squad Registration Form</h2>
+    <form id="registrationForm">
+
+      <div class="mb-4">
+        <label for="teamName" class="block text-gray-300 text-sm font-bold mb-2">Team/Player এর নাম:</label>
+        <input type="text" id="teamName" name="teamName" required
+          class="w-full py-3 px-4">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-300 text-sm font-bold mb-2">Match টাইপ:</label>
+        <input type="text" value="Squad" disabled
+          class="w-full py-3 px-4 text-gray-400 bg-gray-700 cursor-not-allowed rounded-lg border border-gray-600">
+      </div>
+
+      <div id="playerNames" class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" name="playerName1" placeholder="Player 1 এর নাম" required class="w-full py-3 px-4">
+        <input type="text" name="playerName2" placeholder="Player 2 এর নাম" required class="w-full py-3 px-4">
+        <input type="text" name="playerName3" placeholder="Player 3 এর নাম" required class="w-full py-3 px-4">
+        <input type="text" name="playerName4" placeholder="Player 4 এর নাম" required class="w-full py-3 px-4">
+      </div>
+
+      <div class="mb-4">
+        <label for="uid" class="block text-gray-300 text-sm font-bold mb-2">UID:</label>
+        <input type="text" id="uid" name="uid" required class="w-full py-3 px-4">
+      </div>
+
+      <div class="mb-4">
+        <label for="mobileNumber" class="block text-gray-300 text-sm font-bold mb-2">মোবাইল নাম্বার:</label>
+        <input type="tel" id="mobileNumber" name="mobileNumber" required class="w-full py-3 px-4">
+      </div>
+
+      <div class="mb-6 text-yellow-300 bg-yellow-900 bg-opacity-30 p-4 rounded-lg border border-yellow-500">
+        <p class="font-bold">⚠️ মনোযোগ দিন:</p>
+        <p>আপনাকে অবশ্যই আমাদের WhatsApp Community  জয়েন করতে হবে এবং YouTube চ্যানেলটি সাবস্ক্রাইব করে স্ক্রিনশট পাঠাতে হবে।</p>
+      </div>
+
+      <!-- WhatsApp & YouTube Buttons -->
+      <div class="mb-6 flex flex-col md:flex-row gap-4 justify-center items-center">
+        <a href="https://chat.whatsapp.com/K6S3WCvlRrOKYxkgkGrYrh?mode=r_c" target="_blank" class="btn-3d green inline-flex items-center">
+          🟢 WhatsApp Community জয়েন করুন
+        </a>
+        <a href="https://youtube.com/@xthunter5?si=p8AXIqW2GXrzAEnF" target="_blank" class="btn-3d red inline-flex items-center">
+          🔴 YouTube সাবস্ক্রাইব করুন
+        </a>
+      </div>
+
+      <!-- Screenshot Submission via WhatsApp -->
+      <div class="mb-8 text-center">
+         <p class="mb-2">স্ক্রিনশট এবং মোবাইল নাম্বার পাঠাতে নিচের বাটনে ক্লিক করুন:</p>
+        <a href="https://chat.whatsapp.com/CV0KjIpo5EuFy2TPHbKXM7?mode=r_c?text=আমি%20আমার%20স্ক্রিনশট%20এবং%20মোবাইল%20নাম্বার%20পাঠাচ্ছি%20টুর্নামেন্ট%20রেজিস্ট্রেশনের%20জন্য।"
+           target="_blank"
+           class="btn-3d yellow inline-flex items-center">
+          📤 WhatsApp-এ স্ক্রিনশট পাঠান
+        </a>
+      </div>
+      
+      <div class="text-center">
+        <button type="submit" class="btn-3d blue w-full md:w-auto">
+            Register Now
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="container mx-auto py-8 text-center">
+    <p class="text-gray-400">Developed by <span class="font-bold neon-text">XT Maim</span></p>
+  </footer>
+
+  <!-- Countdown Timer -->
+  <script>
+    function countdownTimer() {
+      const targetDate = new Date("2025-07-19T12:59:59").getTime();
+      const now = new Date().getTime();
+      const timeLeft = targetDate - now;
+
+      if (timeLeft > 0) {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      } else {
+        document.getElementById("countdown").innerHTML = "Registration বন্ধ হয়ে গেছে";
+      }
+    }
+    setInterval(countdownTimer, 1000);
+  </script>
+
+  <!-- Submit to Google Sheet -->
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const data = {
+        teamName: document.getElementById("teamName").value,
+        matchType: "squad",
+        playerNames: [
+          document.querySelector('input[name="playerName1"]').value,
+          document.querySelector('input[name="playerName2"]').value,
+          document.querySelector('input[name="playerName3"]').value,
+          document.querySelector('input[name="playerName4"]').value
+        ],
+        uid: document.getElementById("uid").value,
+        mobileNumber: document.getElementById("mobileNumber").value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbzCE4R0hIaCARmooOBuG-dcUslB68sPoEY0Ee07TfS6p02EK6FPANjMH0TUeXRuvGS3/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }).then(() => {
+        alert("Registration Successful! এখন WhatsApp গ্রুপে স্ক্রিনশট ও নাম্বার পাঠান ✅");
+        document.getElementById("registrationForm").reset();
+      }).catch(error => {
+        console.error("Error:", error);
+        alert("Registration failed.");
+      });
+    });
+  </script>
+
+</body>
+</html>
